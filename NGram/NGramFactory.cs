@@ -5,12 +5,12 @@ namespace AITools.NGram
 {
     public static class NGramFactory<T> where T : Enum
     {
-        public static IGram<T> InitializeGramamr(int n)
+        public static IGram<T> InitializeGrammar(int n)
         {
-            Assert.IsTrue(n >= 0);
+            Assert.IsTrue(n >= 1);
 
             IGram<T> gram;
-            if (n == 0)
+            if (n == 1)
             {
                 gram = new UniGram<T>();
             }

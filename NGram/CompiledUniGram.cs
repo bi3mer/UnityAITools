@@ -40,7 +40,7 @@ namespace AITools.NGram
 
             float minVal = UtilityRandom.RandFloat(0f, 1f);
             float total = 0;
-            T outVal = keys[keys.Count];
+            T outVal = keys[keys.Count - 1];
 
             foreach(T key in keys)
             {

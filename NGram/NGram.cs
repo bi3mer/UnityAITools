@@ -7,7 +7,7 @@ namespace AITools.NGram
 {
     public class NGram<T> : IGram<T> where T : Enum
     {
-        private readonly Dictionary<T[], UniGram<T>> grammar = new Dictionary<T[], UniGram<T>>();
+        private readonly Dictionary<string, UniGram<T>> grammar = new Dictionary<string, UniGram<T>>();
 
         public int N { get; private set; }
 
@@ -19,22 +19,23 @@ namespace AITools.NGram
         public void AddData(T[] inData, T outData)
         {
             Assert.IsTrue(inData.Length == N - 1);
+            string key = string.Join(",", inData);
 
-            if (grammar.ContainsKey(inData))
+            if (grammar.ContainsKey(key))
             {
-                grammar[inData].AddData(null, outData);
+                grammar[key].AddData(null, outData);
             }
             else
             {
                 UniGram<T> uniGram = new UniGram<T>();
                 uniGram.AddData(null, outData);
-                grammar[inData] = uniGram;
+                grammar[key] = uniGram;
             }
         }
 
         public void UpdateMemory(float percentRemembered)
         {
-            foreach (T[] key in grammar.Keys)
+            foreach (string key in grammar.Keys)
             {
                 grammar[key].UpdateMemory(percentRemembered);
             }
