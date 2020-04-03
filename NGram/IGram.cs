@@ -1,11 +1,9 @@
-﻿using System;
-
-namespace AITools.NGram
+﻿namespace AITools.NGram
 {
-    public interface IGram<T> where T : Enum
+    public interface IGram
     {
-        void AddData(T[] inData, T outData);
+        void AddData(string[] inData, string outData);
         void UpdateMemory(float percentRemembered);
-        ICompiledGram<T> Compile();
+        ICompiledGram Compile();
     }
 }

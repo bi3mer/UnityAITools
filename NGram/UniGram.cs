@@ -5,9 +5,9 @@ using UnityEngine.Assertions;
 
 namespace AITools.NGram
 {
-    public class UniGram<T> : IGram<T> where T : Enum
+    public class UniGram : IGram
     {
-        private Dictionary<T, float> grammar = new Dictionary<T, float>();
+        private Dictionary<string, float> grammar = new Dictionary<string, float>();
 
         /// <summary>
         /// InData is not used for this. There is likely a better way to do this
@@ -15,7 +15,7 @@ namespace AITools.NGram
         /// </summary>
         /// <param name="inData">Not used</param>
         /// <param name="outData"></param>
-        public void AddData(T[] inData, T outData)
+        public void AddData(string[] inData, string outData)
         {
             if (grammar.ContainsKey(outData) == false)
             {
@@ -32,15 +32,15 @@ namespace AITools.NGram
             Assert.IsTrue(percentRemembered >= 0);
             Assert.IsTrue(percentRemembered <= 1);
 
-            foreach (T key in grammar.Keys)
+            foreach (string key in grammar.Keys)
             {
                 grammar[key] *= percentRemembered;
             }
         }
 
-        public ICompiledGram<T> Compile()
+        public ICompiledGram Compile()
         {
-            return new CompiledUniGram<T>(grammar);
+            return new CompiledUniGram(grammar);
         }
     }
 }

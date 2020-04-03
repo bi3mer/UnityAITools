@@ -1,9 +1,7 @@
-﻿using System;
-
-namespace AITools.NGram
+﻿namespace AITools.NGram
 {
-    public interface ICompiledGram<T> where T : Enum
+    public interface ICompiledGram
     {
-        T Get(T[] inData);
+        string Get(string[] inData);
     }
 }

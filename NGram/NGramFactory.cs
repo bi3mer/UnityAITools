@@ -1,22 +1,21 @@
 ﻿using UnityEngine.Assertions;
-using System;
 
 namespace AITools.NGram
 {
-    public static class NGramFactory<T> where T : Enum
+    public static class NGramFactory
     {
-        public static IGram<T> InitializeGrammar(int n)
+        public static IGram InitializeGrammar(int n)
         {
             Assert.IsTrue(n >= 1);
 
-            IGram<T> gram;
+            IGram gram;
             if (n == 1)
             {
-                gram = new UniGram<T>();
+                gram = new UniGram();
             }
             else
             {
-                gram = new NGram<T>(n);
+                gram = new NGram(n);
             }
 
             return gram;

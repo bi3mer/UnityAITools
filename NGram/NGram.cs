@@ -1,13 +1,11 @@
 ﻿using System.Collections.Generic;
-using System;
-
 using UnityEngine.Assertions;
 
 namespace AITools.NGram
 {
-    public class NGram<T> : IGram<T> where T : Enum
+    public class NGram: IGram
     {
-        private readonly Dictionary<string, UniGram<T>> grammar = new Dictionary<string, UniGram<T>>();
+        private readonly Dictionary<string, UniGram> grammar = new Dictionary<string, UniGram>();
 
         public int N { get; private set; }
 
@@ -16,7 +14,7 @@ namespace AITools.NGram
             N = n;
         }
 
-        public void AddData(T[] inData, T outData)
+        public void AddData(string[] inData, string outData)
         {
             Assert.IsTrue(inData.Length == N - 1);
             string key = string.Join(",", inData);
@@ -27,7 +25,7 @@ namespace AITools.NGram
             }
             else
             {
-                UniGram<T> uniGram = new UniGram<T>();
+                UniGram uniGram = new UniGram();
                 uniGram.AddData(null, outData);
                 grammar[key] = uniGram;
             }
@@ -41,9 +39,9 @@ namespace AITools.NGram
             }
         }
 
-        public ICompiledGram<T> Compile()
+        public ICompiledGram Compile()
         {
-            return new CompiledNGram<T>(grammar);
+            return new CompiledNGram(grammar);
         }
     }
 }
