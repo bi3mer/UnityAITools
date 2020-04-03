@@ -3,7 +3,7 @@ using UnityEngine.Assertions;
 
 namespace AITools.NGram
 {
-    public class NGram: IGram
+    public class NGram : IGram
     {
         private readonly Dictionary<string, UniGram> grammar = new Dictionary<string, UniGram>();
 
@@ -42,6 +42,11 @@ namespace AITools.NGram
         public ICompiledGram Compile()
         {
             return new CompiledNGram(grammar);
+        }
+
+        public int GetN()
+        {
+            return N;
         }
     }
 }

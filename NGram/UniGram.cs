@@ -42,5 +42,10 @@ namespace AITools.NGram
         {
             return new CompiledUniGram(grammar);
         }
+
+        public int GetN()
+        {
+            return 1;
+        }
     }
 }
